@@ -1,7 +1,10 @@
 # LaZassword
 Working Password-Grabber payload for the BashBunny, using LaZagne.
+
 • Author: kuyaya
+
 • Firmware support: Should work for all firmwares, but I haven't tested it yet
+
 • Target: Windows
 
 ## Description
