@@ -3,7 +3,7 @@ Password recovery payload for the BashBunny, using LaZagne.
 
 • Author: kuyaya
 
-• Firmware support: Should work for all firmwares, but I haven't tested it yet
+• Firmware support: Should work for all firmwares, but I haven't tested it for all yet
 
 • Target: Windows
 
