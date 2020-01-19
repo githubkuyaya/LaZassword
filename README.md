@@ -12,6 +12,8 @@ The payload uses powershell to bypass the AV and stores the output of lazagne (r
 
 Payload running time: ~ 30 seconds
 
+Note: You can't really rely on the LED. You know the payload is finished when powershell gets closed.
+
 ## Configuration
 You need to download the latest version of LaZagne from the [release page of LaZagne](https://github.com/AlessandroZ/LaZagne/releases).
 
