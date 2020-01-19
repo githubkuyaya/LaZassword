@@ -14,6 +14,8 @@ Payload running time: ~ 30 seconds
 
 Note: You can't really rely on the LED. You know the payload is finished when powershell gets closed.
 
+It is only tested with Windows Defender as AV. I don't know if it's also working on other AV's.
+
 ## Configuration
 You need to download the latest version of LaZagne from the [release page of LaZagne](https://github.com/AlessandroZ/LaZagne/releases).
 
