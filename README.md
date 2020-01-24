@@ -12,7 +12,7 @@ The payload uses powershell to bypass the AV and stores the output of lazagne (r
 
 Payload running time: ~ 30 seconds
 
-Note: You can't really rely on the LED. You know the payload is finished when powershell gets closed.
+Note: You can't really rely on the LED. You know the payload is finished when there is a text file with min. 20kb in loot.
 
 It is only tested with Windows Defender as AV. I don't know if it's also working on other AV's.
 
@@ -23,10 +23,8 @@ Be sure to temporarily disable the AV so it doesn't get removed during download 
 Example: 
 > G:\lazagne.zip\lazagne.exe
 
-Then just copy-paste the payload into one of the switch folders. (Doesn't matter if switch1 or switch2)
+Then just copy-paste the payload.txt and the lazassword.ps1 into one of the switch folders. (Doesn't matter if switch1 or switch2)
 
-***It is important to change the keyboard layouts in the payload. There are some notes in the payload that tell you if you should change something there.***
-
-If something doesn't work because of the keyboard layout (e.g. printing wrong letters) you have to change the payload by yourself. Just replace the letters who aren't printed out correctly with altcode. 
+***Be sure to change the DUCKY_LANG in the payload.txt***
 
 If you have an idea on how to improve the payload or if you have an issue (e.g. the payload itself is not working) don't hesitate to PM me by E-Mail or at the [Hak5 Forums](https://forums.hak5.org/profile/63440-kuyaya/).
