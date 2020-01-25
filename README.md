@@ -12,7 +12,7 @@ The payload uses powershell to bypass the AV and stores the output of lazagne (r
 
 Payload running time: ~ 30 seconds
 
-Note: You can't really rely on the LED. You know the payload is finished when there is a text file with min. 20kb in loot.
+Note: You can't really rely on the LED. You know the payload is finished when the explorer, who automatically pops up because of "storage", closes.
 
 It is only tested with Windows Defender as AV. I don't know if it's also working on other AV's.
 
