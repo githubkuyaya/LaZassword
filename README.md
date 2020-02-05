@@ -28,3 +28,6 @@ Then just copy-paste the payload.txt and the lazassword.ps1 into one of the swit
 ***Be sure to change the DUCKY_LANG in the payload.txt***
 
 If you have an idea on how to improve the payload or if you have an issue (e.g. the payload itself is not working) don't hesitate to PM me by E-Mail or at the [Hak5 Forums](https://forums.hak5.org/profile/63440-kuyaya/).
+
+## Latest update information
+Adding the command to delete all items in the quick-access folder. It's not like you just hide them, you delete them. If the BB wouldn't do that, the victim user could find out what you were doing. He could see that you used e.g. "lazassword.ps1" "lazagne.zip" "loot", and with some googling you would probably get caught.
