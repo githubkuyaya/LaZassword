@@ -11,9 +11,6 @@ ATTACKMODE HID STORAGE
 # Ensure loot is available for saving results.
 mount /dev/nandf /root/udisk/
 
-# Create loot directory
-mkdir /root/udisk/loot/LaZassword
-
 # Setup
 DUCKY_LANG=ch
 GET SWITCH_POSITION
