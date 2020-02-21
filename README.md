@@ -10,11 +10,13 @@ Password recovery payload for the BashBunny, using LaZagne.
 ## Description
 The payload uses powershell to bypass the AV and stores the output of lazagne (runned as admin) in a lootfile.
 
-Payload running time: ~ 30 seconds
+Payload running time: ~ 1 minute
 
-Note: You can't really rely on the LED. You know the payload is finished when the explorer, who automatically pops up because of "storage", closes.
+You can rely on the LED FINISH. You don't have to do anything on the victim computer, as long as he has Windows Defender as the AV. No keyboard change, no safe eject, just plug it in, wait for the LED FINISH, plug it out.
 
-It is only tested with Windows Defender as AV. I don't know if it's also working on other AV's.
+Only works with Windows Defender as victim AV.
+
+The BashBunny ejects itself. You don't have to do anything.
 
 ## Configuration
 You need to download the latest version of LaZagne from the [release page of LaZagne](https://github.com/AlessandroZ/LaZagne/releases).
@@ -30,4 +32,4 @@ Then just copy-paste the payload.txt and the lazassword.ps1 into one of the swit
 If you have an idea on how to improve the payload or if you have an issue (e.g. the payload itself is not working) don't hesitate to PM me by E-Mail or at the [Hak5 Forums](https://forums.hak5.org/profile/63440-kuyaya/).
 
 ## Latest update information
-Adding the command to delete all items in the quick-access folder. It's not like you just hide them, you delete them. If the BB wouldn't do that, the victim user could find out what you were doing. He could see that you used e.g. "lazassword.ps1" "lazagne.zip" "loot", and with some googling you would probably get caught.
+Adding the ability to make a real LED FINISH. Creds go to PoSHMagiC0de.
