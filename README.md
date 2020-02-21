@@ -7,6 +7,8 @@ Password recovery payload for the BashBunny, using LaZagne.
 
 • Target: Windows
 
+• Creds: [PoSHMagiC0de](https://github.com/PoSHMagiC0de)
+
 ## Description
 The payload uses powershell to bypass the AV and stores the output of lazagne (runned as admin) in a lootfile.
 
