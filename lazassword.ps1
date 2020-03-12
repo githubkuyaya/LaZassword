@@ -15,4 +15,8 @@ stop-process -Name explorer
 Get-ChildItem -Path C:\Users\\$env:UserName\AppData\Roaming\Microsoft\Windows\Recent -Include * -File -Recurse | foreach { $_.Delete()}
 $bb = (gwmi win32_volume -f 'label=''BASHBUNNY''').Name
 $driveEject = New-Object -comObject Shell.Application
+$COUNT=1
+while ($COUNT -ne 5){
 $driveEject.Namespace(17).ParseName("$bb").InvokeVerb("Eject")
+$COUNT++
+}
