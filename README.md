@@ -30,8 +30,10 @@ Example:
 Then just copy-paste the payload.txt and the lazassword.ps1 into one of the switch folders. (Doesn't matter if switch1 or switch2)
 
 ***Be sure to change the DUCKY_LANG in the payload.txt***
+***Be sure to change the "administrators" in bypass.ps1 on line 42***
+Change it to "administrators" in your language. Example: German people should replace it by "Administratoren".
 
 If you have an idea on how to improve the payload or if you have an issue (e.g. the payload itself is not working) don't hesitate to PM me by E-Mail or at the [Hak5 Forums](https://forums.hak5.org/profile/63440-kuyaya/).
 
 ## Latest update information
-Adding the ability to make a real LED FINISH. Creds go to PoSHMagiC0de.
+Adding the ability to bypass UAC. Creds go to PoSHMagiC0de.
