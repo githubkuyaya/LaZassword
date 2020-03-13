@@ -30,6 +30,7 @@ Example:
 Then just copy-paste the payload.txt and the lazassword.ps1 into one of the switch folders. (Doesn't matter if switch1 or switch2)
 
 ***Be sure to change the DUCKY_LANG in the payload.txt***
+
 ***Be sure to change the "administrators" in bypass.ps1 on line 42***
 Change it to "administrators" in your language. Example: German people should replace it by "Administratoren".
 
