@@ -28,7 +28,7 @@ done
 #############################################
 
 # Define keyboard layout here ('us' is default):
-keyboard_lang="ch"
+keyboard_lang="us"
 
 # Define name of the loot folder here (has to match with the one in LaZassword.ps1, hostname is default):
 lootfolder=$TARGET_HOSTNAME
