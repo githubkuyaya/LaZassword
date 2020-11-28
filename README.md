@@ -23,16 +23,13 @@ The BashBunny ejects itself. You don't have to do anything.
 ## Configuration
 You need to download the latest version of LaZagne from the [release page of LaZagne](https://github.com/AlessandroZ/LaZagne/releases).
 
-Be sure to temporarily disable the AV so it doesn't get removed during download and installation. Then make a Zip-file (not 7zip or rar, just the normal zip format that windows provides) out of it, and place it in the /root folder of the Bunny.
+Be sure to temporarily disable the AV so it doesn't get removed during download and installation. Then make a Zip-file (not 7zip or rar, just the normal zip format that windows provides) out of it, and drag-and-drop it on the bunny.
 Example: 
 > G:\lazagne.zip\lazagne.exe
 
 Then just copy-paste the payload.txt and the lazassword.ps1 into one of the switch folders. (Doesn't matter if switch1 or switch2)
 
-***Be sure to change the DUCKY_LANG in the payload.txt***
-
-***Be sure to change the "administrators" in bypass.ps1 on line 42***
-Change it to "administrators" in your language. Example: German people should replace it by "Administratoren".
+If you have a non-default keyboard layout, be sure to change that in the payload.txt
 
 If you have an idea on how to improve the payload or if you have an issue (e.g. the payload itself is not working) don't hesitate to PM me by E-Mail or at the [Hak5 Forums](https://forums.hak5.org/profile/63440-kuyaya/).
 
